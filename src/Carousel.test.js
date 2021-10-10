@@ -29,3 +29,8 @@ it("works when you click on the right arrow", function () {
 test("it renders without crashing", () => {
   render(<Carousel />);
 });
+
+test("it matches snapshot", () => {
+  const { asFragment } = render(<Carousel />);
+  expect(asFragment()).toMatchSnapshot();
+});

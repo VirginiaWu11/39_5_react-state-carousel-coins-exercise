@@ -49,12 +49,11 @@ test("left arrow", () => {
 test("left/right arrow should not show one first and last image respectively", () => {
   const { getByText, debug, getByTestId } = render(<Carousel />);
   const rightBtn = getByTestId("right-arrow");
+  fireEvent.click(rightBtn);
   const leftBtn = getByTestId("left-arrow");
-  debug();
-
+  fireEvent.click(leftBtn);
   expect(leftBtn).not.toBeInTheDocument();
   fireEvent.click(rightBtn);
   fireEvent.click(rightBtn);
-  debug();
   expect(rightBtn).not.toBeInTheDocument();
 });

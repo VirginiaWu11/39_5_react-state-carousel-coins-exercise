@@ -34,3 +34,14 @@ test("it matches snapshot", () => {
   const { asFragment } = render(<Carousel />);
   expect(asFragment()).toMatchSnapshot();
 });
+
+test("button increments counter", () => {
+  const { getByText, debug, getByTestId } = render(<Carousel />);
+  const rightBtn = getByTestId("right-arrow");
+  fireEvent.click(rightBtn);
+  const small = getByText("Image 2 of 3.");
+  const leftBtn = getByTestId("left-arrow");
+  fireEvent.click(leftBtn);
+  expect(small).toHaveTextContent("Image 1 of 3.");
+  expect(small).not.toHaveTextContent("Image 2 of 3.");
+});

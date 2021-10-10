@@ -36,7 +36,7 @@ test("it matches snapshot", () => {
 });
 
 test("left arrow", () => {
-  const { getByText, debug, getByTestId } = render(<Carousel />);
+  const { getByText, getByTestId } = render(<Carousel />);
   const rightBtn = getByTestId("right-arrow");
   fireEvent.click(rightBtn);
   const small = getByText("Image 2 of 3.");
@@ -44,4 +44,17 @@ test("left arrow", () => {
   fireEvent.click(leftBtn);
   expect(small).toHaveTextContent("Image 1 of 3.");
   expect(small).not.toHaveTextContent("Image 2 of 3.");
+});
+
+test("left/right arrow should not show one first and last image respectively", () => {
+  const { getByText, debug, getByTestId } = render(<Carousel />);
+  const rightBtn = getByTestId("right-arrow");
+  const leftBtn = getByTestId("left-arrow");
+  debug();
+
+  expect(leftBtn).not.toBeInTheDocument();
+  fireEvent.click(rightBtn);
+  fireEvent.click(rightBtn);
+  debug();
+  expect(rightBtn).not.toBeInTheDocument();
 });

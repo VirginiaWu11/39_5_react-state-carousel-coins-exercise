@@ -35,7 +35,7 @@ test("it matches snapshot", () => {
   expect(asFragment()).toMatchSnapshot();
 });
 
-test("button increments counter", () => {
+test("left arrow", () => {
   const { getByText, debug, getByTestId } = render(<Carousel />);
   const rightBtn = getByTestId("right-arrow");
   fireEvent.click(rightBtn);
